@@ -82,7 +82,8 @@ function render(data){
     let timeLine=''; if(r.endAt && r.endAt>now){ timeLine=`Termina en ${fmtRel(r.endAt-now)}`; } else if (r.updatedAt){ timeLine=`Actualizado hace ${fmtRel(now-r.updatedAt)}`; }
     let next=''; if(r.nextTitle && r.nextStartAt && r.nextStartAt>now){ next=`Próximo: ${r.nextTitle} · inicia en ${fmtRel(r.nextStartAt-now)}`; }
     const card=document.createElement('div'); card.className='card'; card.innerHTML=`
-      <div class="ring pulse" style="background:${ringColor}"></div>
+      <div class="ring ${r.state!=='libre' ? 'pulse' : ''}" style="background:${ringColor}"></div>
+
       <div>
         <h2 class="name">${r.name}</h2>
         <div class="meta"><span class="pill ${pillClass}">${iconSVG()} ${stateLabel(r)}</span></div>
